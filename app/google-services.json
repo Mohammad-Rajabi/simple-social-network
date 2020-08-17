@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "520502909096",
+    "firebase_url": "https://glossy-odyssey-235816.firebaseio.com",
+    "project_id": "glossy-odyssey-235816",
+    "storage_bucket": "glossy-odyssey-235816.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520502909096:android:1d52d77794dc268ba78a9d",
+        "android_client_info": {
+          "package_name": "com.zoho.mohammadrajabi.socialnetwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520502909096-39kc5975oji3rj6h333du58i5jjqgul2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYdukr773ol4kqv9KEPMEeJ_QDiS95gI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520502909096-39kc5975oji3rj6h333du58i5jjqgul2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

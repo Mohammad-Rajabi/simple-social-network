@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="standard_margin">8dp</dimen>
+    <dimen name="medium_margin">12dp</dimen>
+    <dimen name="high_margin">16dp</dimen>
+    <dimen name="x_high_margin">24dp</dimen>
+    <dimen name="very_high_margin">32dp</dimen>
+    <dimen name="very_very_high_margin">40dp</dimen>
+
+
+    <dimen name="standard_padding">8dp</dimen>
+    <dimen name="medium_padding">12dp</dimen>
+    <dimen name="high_padding">16dp</dimen>
+
+
+    <dimen name="normal_text_size">14sp</dimen>
+    <dimen name="small_text_size">12sp</dimen>
+    <dimen name="large_text_size">16sp</dimen>
+    <dimen name="x_large_text_size">18sp</dimen>
+    <dimen name="very_large_text_size">24sp</dimen>
+
+    <dimen name="default_corner_radius">5dp</dimen>
+    <dimen name="default_elevation">6dp</dimen>
+</resources>

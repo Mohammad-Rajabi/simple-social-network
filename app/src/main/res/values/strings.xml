@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">Social Network</string>
+    <string name="viewAll">مشاهده همه</string>
+    <string name="errorMessage">اختلال در دریافت اطلاعات</string>
+    <string name="unknownError">خطای ناشناخته</string>
+    <string name="userName">نام کاربری</string>
+    <string name="password">کلمه عبور</string>
+    <string name="signIn">ورود به حساب کاربری</string>
+    <string name="newUser">ساخت حساب کاربری</string>
+    <string name="signUp">ثبت نام</string>
+    <string name="account">حساب کاربری</string>
+    <string name="loading">در حال دریافت اطلاعات</string>
+    <string name="connectivityToInternet"> خطا در اتصال به اینترنت...</string>
+    <string name="addComment">ثبت نظر</string>
+    <string name="usersComments">نظرات کاربران</string>
+    <string name="noComments">هنوز نظری وجود ندارد!</string>
+    <string name="dialog_commentTitle">عنوان نظر</string>
+    <string name="dialog_comment">نظر خود را وارد کنید</string>
+    <string name="cancel">انصراف</string>
+    <string name="emptyTitleError">عنوان نظر نمی تواند خالی باشد!</string>
+    <string name="emptyDescriptionError">متن نظر نمی تواند خالی باشد!</string>
+    <string name="postedComment">نظر شما با موفقیت ثبت شد, پس از تایید منشر خواهد شد.</string>
+    <string name="auth">ورود و عضویت</string>
+    <string name="exit">خروج از حساب کاربری</string>
+    <string name="doubleClickToExit">برای خروج دکمه بازگشت را دوباره بزنید</string>
+    <string name="home">خانه</string>
+    <string name="search">دنبال کی میگردی؟</string>
+    <string name="explore">جستجو</string>
+    <string name="profile">پروفایل</string>
+    <string name="enter">ورود</string>
+    <string name="welcome">خوش آمدید</string>
+    <string name="showPassword">نمایش کلمه عبور</string>
+    <string name="userPhone">شماره همراه</string>
+    <string name="like">پسندیدم</string>
+    <string name="tapToRetry">تلاش مجدد</string>
+    <string name="noResult">نتیجه ای یافت نشد!</string>
+    <string name="myProfile">پروفایل من</string>
+    <string name="createPost">ایجاد پست</string>
+    <string name="edit_user_profile">ویرایش پروفایل</string>
+    <string name="edit_picture">ویرایش عکس پروفایل</string>
+    <string name="edit">ویرایش اطلاعات</string>
+    <string name="myPosts">پست های من</string>
+    <string name="addPost">ایجاد پست</string>
+    <string name="postTitle">عنوان پست</string>
+    <string name="noPosts">هنوز پستی وجود ندارد!</string>
+
+</resources>

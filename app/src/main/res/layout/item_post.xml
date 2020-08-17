@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.zoho.mohammadrajabi.socialnetwork.R" />
+
+        <variable
+            name="post"
+            type="com.zoho.mohammadrajabi.socialnetwork.data.model.Post" />
+
+        <variable
+            name="homeFragment"
+            type="com.zoho.mohammadrajabi.socialnetwork.ui.fragment.HomeFragment" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/white">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView_postItem_profileImage"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/standard_margin"
+            app:profileImage="@{post.postOwnerProfileImage}" />
+
+        <TextView
+            android:id="@+id/textView_postImage_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/imageView_postItem_profileImage"
+            android:layout_alignBottom="@id/imageView_postItem_profileImage"
+            android:layout_marginRight="@dimen/standard_margin"
+            android:layout_toLeftOf="@id/imageView_postItem_profileImage"
+            android:gravity="center"
+            android:text="@{post.postOwnerUsername}"
+            android:textSize="@dimen/x_large_text_size" />
+
+        <TextView
+            android:id="@+id/textView_postItem_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_postItem_profileImage"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/standard_margin"
+            android:text="@{post.postContent}"
+            android:textSize="@dimen/large_text_size" />
+
+        <ImageView
+            android:id="@+id/imageView_postItem_postImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_postItem_content"
+            android:adjustViewBounds="true"
+            android:minHeight="150dp"
+            app:postImage="@{post.postImage}" />
+
+        <ImageView
+            android:id="@+id/imageView_postItem_postLikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_postItem_postImage"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/standard_margin"
+            android:visibility="@{post.likeCount == 0 ? View.INVISIBLE : View.VISIBLE}"
+            app:srcCompat="@drawable/ic_heart" />
+
+        <TextView
+            android:id="@+id/textView_postImage_postLikeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_postItem_postImage"
+            android:layout_margin="@dimen/standard_margin"
+            android:layout_toLeftOf="@id/imageView_postItem_postLikeCount"
+            android:textSize="@dimen/normal_text_size"
+            />
+
+
+        <TextView
+            android:id="@+id/textView_postImage_commentCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_postItem_postImage"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="@dimen/standard_margin"
+            android:text="@{post.commentCountStr}"
+            android:textSize="@dimen/normal_text_size"
+            android:visibility="@{post.commentCount == 0 ? View.INVISIBLE : View.VISIBLE}" />
+
+        <View
+            android:id="@+id/view_postItem"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/imageView_postItem_postLikeCount"
+            android:layout_marginLeft="@dimen/very_high_margin"
+            android:layout_marginRight="@dimen/very_high_margin"
+            android:background="@color/gray300" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/view_postItem"
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            android:weightSum="1">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5">
+
+                <ImageView
+                    android:id="@+id/imageView_postItem_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    app:srcCompat="@drawable/ic_comment" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView_postItem_comment"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    android:layout_marginBottom="@dimen/standard_margin"
+                    android:text="@string/addComment"
+                    android:textSize="@dimen/x_large_text_size" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5">
+
+                <ImageView
+                    android:id="@+id/imageView_postItem_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    app:srcCompat="@drawable/ic_like" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView_postItem_like"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/standard_margin"
+                    android:layout_marginBottom="@dimen/standard_margin"
+                    android:text="@string/like"
+                    android:textSize="@dimen/x_large_text_size" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

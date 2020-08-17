@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_dialogTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/high_margin"
+            android:layout_marginTop="@dimen/high_margin"
+            android:layout_marginEnd="@dimen/high_margin"
+            android:text="برای خروج اطمینان دارید؟"
+            android:textColor="@color/black"
+            android:textSize="@dimen/normal_text_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_below="@id/tv_dialogTitle"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/tv_accept_exitDialog"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:text="بله"
+                android:textColor="#33bf61"
+                android:background="?selectableItemBackground"
+                android:textSize="@dimen/normal_text_size" />
+
+            <TextView
+                android:id="@+id/tv_deny_exitDialog"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="?selectableItemBackground"
+                android:text="خیر"
+                android:textColor="#ff5a60"
+                android:textSize="@dimen/normal_text_size" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</layout>
