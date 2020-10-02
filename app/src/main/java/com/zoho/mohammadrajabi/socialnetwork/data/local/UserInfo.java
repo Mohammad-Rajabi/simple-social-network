@@ -10,6 +10,7 @@ import javax.inject.Singleton;
 public class UserInfo {
     private static final String SHARED_NAME = "userInfo";
     private static final String USER_ID = "userId";
+    private static final String IMAGE_URL = "imageUrl";
     private SharedPreferences sharedPreferences;
 
     @Inject
@@ -25,6 +26,16 @@ public class UserInfo {
 
     public String getUserId() {
         return sharedPreferences.getString(UserInfo.USER_ID, "");
+    }
+
+    public void setUserProfileImage(String imageUrl) {
+        SharedPreferences.Editor editor = this.sharedPreferences.edit();
+        editor.putString(UserInfo.IMAGE_URL, imageUrl);
+        editor.commit();
+    }
+
+    public String getImageUrl() {
+        return sharedPreferences.getString(UserInfo.IMAGE_URL, "");
     }
 
 }

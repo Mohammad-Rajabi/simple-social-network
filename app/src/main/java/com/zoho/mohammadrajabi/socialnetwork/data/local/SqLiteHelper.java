@@ -34,28 +34,44 @@ public class SqLiteHelper extends SQLiteAssetHelper {
 
     public Observable<List<User>> getUsers(String keyword) {
 
-        SQLiteDatabase db = sqLiteAssetHelper.getReadableDatabase();
-        List<User> users = new ArrayList<>();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + SqLiteHelper.TBL_USER + " WHERE username LIKE '%" + keyword + "%';", null);
-        int i = 0;
+        return Observable.create(emitter -> {
 
-        cursor.moveToFirst();
+            try {
 
-        if (cursor.getCount() > 0) {
+                if (!emitter.isDisposed()) {
 
-            while (!cursor.isAfterLast()) {
-                User user = new User();
-                user.setId(i++);
-                user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
-                users.add(user);
-                cursor.moveToNext();
+                    SQLiteDatabase db = sqLiteAssetHelper.getReadableDatabase();
+                    List<User> users = new ArrayList<>();
+                    Cursor cursor = db.rawQuery("SELECT * FROM " + SqLiteHelper.TBL_USER + " WHERE username LIKE '%" + keyword + "%';", null);
+                    int i = 0;
+
+                    cursor.moveToFirst();
+
+                    if (cursor.getCount() > 0) {
+
+                        while (!cursor.isAfterLast()) {
+                            User user = new User();
+                            user.setId(i++);
+                            user.setUsername(cursor.getString(cursor.getColumnIndex("username")));
+                            users.add(user);
+                            cursor.moveToNext();
+                        }
+
+                    }
+                    cursor.close();
+                    db.close();
+
+                    if (!emitter.isDisposed()) {
+                        emitter.onNext(users);
+                        emitter.onComplete();
+                    }
+
+                }
+
+            } catch (Exception e) {
+                if (!emitter.isDisposed()) emitter.onError(e);
             }
 
-        }
-
-        cursor.close();
-        db.close();
-
-        return Observable.just(users);
+        });
     }
 }

@@ -1,7 +1,6 @@
 package com.zoho.mohammadrajabi.socialnetwork.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,11 +8,11 @@ import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.zoho.mohammadrajabi.socialnetwork.R;
 import com.zoho.mohammadrajabi.socialnetwork.data.local.SessionManager;
 import com.zoho.mohammadrajabi.socialnetwork.data.TokenContainer;
 import com.zoho.mohammadrajabi.socialnetwork.data.local.UserInfo;
 import com.zoho.mohammadrajabi.socialnetwork.databinding.ActivitySplashBinding;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.login.LoginActivity;
 
 import javax.inject.Inject;
 
@@ -32,8 +31,10 @@ public class SplashActivity extends AppCompatActivity {
         AndroidInjection.inject(this);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        ActivitySplashBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_splash);
-        if(!userInfo.getUserId().isEmpty() && userInfo.getUserId()!=null) {
+        ActivitySplashBinding binding = ActivitySplashBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        if (!userInfo.getUserId().isEmpty() && userInfo.getUserId() != null) {
             TokenContainer.updateUserId(userInfo.getUserId());
         }
         new Handler().postDelayed(new Runnable() {

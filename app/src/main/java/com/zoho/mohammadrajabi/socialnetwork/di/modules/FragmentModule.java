@@ -1,8 +1,8 @@
 package com.zoho.mohammadrajabi.socialnetwork.di.modules;
 
-import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.HomeFragment;
-import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.ProfileFragment;
-import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.SearchFragment;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.home.HomeFragment;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.profile.ProfileFragment;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.search.SearchFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

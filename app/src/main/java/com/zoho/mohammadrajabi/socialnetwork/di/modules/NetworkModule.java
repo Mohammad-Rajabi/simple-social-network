@@ -1,6 +1,7 @@
 package com.zoho.mohammadrajabi.socialnetwork.di.modules;
 
 
+import com.zoho.mohammadrajabi.socialnetwork.BuildConfig;
 import com.zoho.mohammadrajabi.socialnetwork.data.rest.ApiService;
 import com.zoho.mohammadrajabi.socialnetwork.util.NetworkUtil;
 
@@ -47,7 +48,7 @@ public class NetworkModule {
                 .build();
 
         return new Retrofit.Builder()
-                .baseUrl("http://myapiservices.ir/api/")
+                .baseUrl(BuildConfig.API_BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)

@@ -1,13 +1,9 @@
 
 package com.zoho.mohammadrajabi.socialnetwork.data.model;
 
-import androidx.databinding.BindingAdapter;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
-import com.zoho.mohammadrajabi.socialnetwork.R;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Comment {
 
@@ -20,18 +16,6 @@ public class Comment {
     @SerializedName("commentOwnerUsername")
     private String commentOwnerUsername;
 
-
-    @BindingAdapter("profileImg")
-    public static void loadProfileImage(CircleImageView imageView, String imageUrl) {
-
-//        if (imageUrl != null || !imageUrl.isEmpty()) {
-//            Glide.with(imageView.getContext()).load(imageUrl).into(imageView);
-//        } else
-//            Glide.with(imageView.getContext()).load(imageView.getContext().getResources().getDrawable(R.drawable.photo_male_2)).into(imageView);
-
-        Glide.with(imageView.getContext()).load(imageView.getContext().getResources().getDrawable(R.drawable.photo_male_2)).into(imageView);
-
-    }
 
     public String getCommentContent() {
         return commentContent;

@@ -1,7 +1,6 @@
 package com.zoho.mohammadrajabi.socialnetwork.ui.activity;
 
 
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -12,9 +11,9 @@ import android.widget.Toast;
 
 import com.zoho.mohammadrajabi.socialnetwork.R;
 import com.zoho.mohammadrajabi.socialnetwork.databinding.ActivityMainBinding;
-import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.HomeFragment;
-import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.ProfileFragment;
-import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.SearchFragment;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.home.HomeFragment;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.profile.ProfileFragment;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.search.SearchFragment;
 
 import java.util.Stack;
 
@@ -33,7 +32,8 @@ public class MainActivity extends DaggerAppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         homeFragment = new HomeFragment();
         fragmentTransaction(homeFragment);

@@ -12,6 +12,11 @@ import com.zoho.mohammadrajabi.socialnetwork.data.rest.ApiService;
 
 import javax.inject.Inject;
 
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,7 +26,6 @@ public class ProfileEditRepository {
 
     private ApiService apiService;
     private ProfileMemoryCache<MutableLiveData<Resources<UserProfileResponse>>> profileMemoryCache;
-    private MutableLiveData result;
 
     @Inject
     public ProfileEditRepository(ApiService apiService, ProfileMemoryCache<MutableLiveData<Resources<UserProfileResponse>>> profileMemoryCache) {
@@ -29,47 +33,13 @@ public class ProfileEditRepository {
         this.profileMemoryCache = profileMemoryCache;
     }
 
-    public MutableLiveData<Resources<checkUsernameResponse>> checkUsername(String username) {
-        MutableLiveData result = new MutableLiveData<Resources<checkUsernameResponse>>();
 
-        apiService.checkUsername(username).enqueue(new Callback<checkUsernameResponse>() {
-            @Override
-            public void onResponse(Call<checkUsernameResponse> call, Response<checkUsernameResponse> response) {
-                if (response.isSuccessful()) result.postValue(Resources.onSuccess(response.body()));
-            }
+    public Single<UpdateUserResponse> editProfile(int userId, String username, String password, String phone, MultipartBody.Part multipartBody) {
 
-            @Override
-            public void onFailure(Call<checkUsernameResponse> call, Throwable t) {
-                if (t instanceof ConnectivityException || t instanceof java.net.ConnectException)
-                    result.postValue(Resources.onConnectivity());
-                else result.postValue(Resources.onError(""));
-            }
-        });
-        return result;
-    }
-
-    public MutableLiveData<Resources<UpdateUserResponse>> editProfile(int userId, String username, String password, String phone, MultipartBody.Part multipartBody) {
-
-        result = new MutableLiveData<Resources<UpdateUserResponse>>();
-        result.setValue(Resources.onLoading());
-
-        apiService.editProfile(userId, username, password, phone, multipartBody).enqueue(new Callback<UpdateUserResponse>() {
-            @Override
-            public void onResponse(Call<UpdateUserResponse> call, Response<UpdateUserResponse> response) {
-                if (response.isSuccessful()) {
-                    result.postValue(Resources.onSuccess(response.body()));
+        return apiService.editProfile(userId, username, password, phone, multipartBody)
+                .doOnSuccess(updateUserResponse -> {
                     profileMemoryCache.setInsertedData(false);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<UpdateUserResponse> call, Throwable t) {
-                if (t instanceof ConnectivityException || t instanceof java.net.ConnectException)
-                    result.postValue(Resources.onConnectivity());
-                else result.postValue(Resources.onError(""));
-            }
-        });
-
-        return result;
+                });
     }
+
 }

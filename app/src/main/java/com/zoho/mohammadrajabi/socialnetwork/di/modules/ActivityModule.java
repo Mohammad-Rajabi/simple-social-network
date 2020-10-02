@@ -1,13 +1,13 @@
 package com.zoho.mohammadrajabi.socialnetwork.di.modules;
 
 
-import com.zoho.mohammadrajabi.socialnetwork.ui.activity.SendPostActivity;
-import com.zoho.mohammadrajabi.socialnetwork.ui.activity.CommentActivity;
-import com.zoho.mohammadrajabi.socialnetwork.ui.activity.LoginActivity;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.sendPost.SendPostActivity;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.comment.CommentActivity;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.login.LoginActivity;
 import com.zoho.mohammadrajabi.socialnetwork.ui.activity.MainActivity;
-import com.zoho.mohammadrajabi.socialnetwork.ui.activity.PostsActivity;
-import com.zoho.mohammadrajabi.socialnetwork.ui.activity.ProfileEditActivity;
-import com.zoho.mohammadrajabi.socialnetwork.ui.activity.SignUpActivity;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.posts.PostsActivity;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.profileEdit.ProfileEditActivity;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.signup.SignUpActivity;
 import com.zoho.mohammadrajabi.socialnetwork.ui.activity.SplashActivity;
 
 import dagger.Module;

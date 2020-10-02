@@ -20,7 +20,7 @@ public class HomeRepository {
         this.memoryCache = memoryCache;
     }
 
-    public Single<PostResponse> getPosts(int currentPage) {
+    public Single<PostResponse> getPosts() {
         if (memoryCache.isInsertedData()) {
             return memoryCache.getData();
         } else {

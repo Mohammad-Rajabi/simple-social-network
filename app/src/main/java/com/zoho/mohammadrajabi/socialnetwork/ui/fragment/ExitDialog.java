@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 
 import com.zoho.mohammadrajabi.socialnetwork.R;
@@ -19,7 +18,7 @@ public class ExitDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        DialogExitBinding binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.dialog_exit, null, false);
+        DialogExitBinding binding = DialogExitBinding.inflate(LayoutInflater.from(getContext()), null, false);
 
         binding.tvAcceptExitDialog.setOnClickListener(v -> {
             dismiss();

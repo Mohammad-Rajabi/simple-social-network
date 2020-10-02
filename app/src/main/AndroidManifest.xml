@@ -21,16 +21,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         >
-        <activity android:name=".ui.activity.PostsActivity"></activity>
-        <activity android:name=".ui.activity.ProfileEditActivity" />
+        <activity android:name=".ui.activity.posts.PostsActivity"></activity>
+        <activity android:name=".ui.activity.profileEdit.ProfileEditActivity" />
         <activity
-            android:name=".ui.activity.CommentActivity"
+            android:name=".ui.activity.comment.CommentActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".ui.activity.SignUpActivity"
+            android:name=".ui.activity.signup.SignUpActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.login.LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".ui.activity.SplashActivity">
             <intent-filter>
@@ -41,7 +41,7 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity" />
         <activity
-            android:name=".ui.activity.SendPostActivity"
+            android:name=".ui.activity.sendPost.SendPostActivity"
             android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <activity

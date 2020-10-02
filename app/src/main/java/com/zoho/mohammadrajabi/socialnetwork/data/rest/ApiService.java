@@ -32,16 +32,16 @@ public interface ApiService {
 
     @POST("signin")
     @FormUrlEncoded
-    Call<SignInResponse> login(@Field("username") String username, @Field("password") String password);
+    Single<SignInResponse> login(@Field("username") String username, @Field("password") String password);
 
 
     @POST("signup")
     @Multipart
-    Call<SignUpResponse> singUp(@Part("username") String username, @Part("password") String password, @Part("phone") String phone);
+    Single<SignUpResponse> singUp(@Part("username") String username, @Part("password") String password, @Part("phone") String phone);
 
     @POST("checkusername")
     @FormUrlEncoded
-    Call<checkUsernameResponse> checkUsername(@Field("username") String username);
+    Single<checkUsernameResponse> checkUsername(@Field("username") String username);
 
 
     @GET("getallposts")
@@ -67,7 +67,7 @@ public interface ApiService {
 
     @POST("updateuser")
     @Multipart
-    Call<UpdateUserResponse> editProfile(@Part("user_id") int userId,
+    Single<UpdateUserResponse> editProfile(@Part("user_id") int userId,
                                            @Part("username") String username,
                                            @Part("password") String password,
                                            @Part("phone") String phone,

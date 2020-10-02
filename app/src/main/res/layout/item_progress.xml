@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/standard_margin"
+    android:layout_marginBottom="@dimen/standard_margin">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/standard_margin"
-        android:layout_marginBottom="@dimen/standard_margin">
+    <ProgressBar
+        android:id="@+id/progressBar_itemProgress_loading"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true" />
 
-        <ProgressBar
-            android:id="@+id/progressBar_itemProgress_loading"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true" />
+</RelativeLayout>
 
-    </RelativeLayout>
-
-</layout>
 

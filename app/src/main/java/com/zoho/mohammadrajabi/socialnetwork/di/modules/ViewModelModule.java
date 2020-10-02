@@ -4,15 +4,15 @@ package com.zoho.mohammadrajabi.socialnetwork.di.modules;
 import androidx.lifecycle.ViewModel;
 
 import com.zoho.mohammadrajabi.socialnetwork.di.keys.ViewModelKey;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.CommentViewModel;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.HomeViewModel;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.LoginViewModel;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.PostsViewModel;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.ProfileEditViewModel;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.ProfileViewModel;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.SearchViewModel;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.SendPostViewModel;
-import com.zoho.mohammadrajabi.socialnetwork.viewModel.SignUpViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.comment.CommentViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.home.HomeViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.login.LoginViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.posts.PostsViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.profileEdit.ProfileEditViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.profile.ProfileViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.fragment.search.SearchViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.sendPost.SendPostViewModel;
+import com.zoho.mohammadrajabi.socialnetwork.ui.activity.signup.SignUpViewModel;
 
 import dagger.Binds;
 import dagger.Module;

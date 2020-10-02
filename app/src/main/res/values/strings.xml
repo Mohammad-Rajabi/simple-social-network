@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Social Network</string>
     <string name="viewAll">مشاهده همه</string>
     <string name="errorMessage">اختلال در دریافت اطلاعات</string>
     <string name="unknownError">خطای ناشناخته</string>

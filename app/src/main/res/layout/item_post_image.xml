@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<com.zoho.mohammadrajabi.socialnetwork.util.CustomCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_itemPostImage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="5dp">
 
-    <data>
-
-        <variable
-            name="post"
-            type="com.zoho.mohammadrajabi.socialnetwork.data.model.Post" />
-
-    </data>
-
-    <com.zoho.mohammadrajabi.socialnetwork.util.CustomCardView
-        android:id="@+id/layout_itemPostImage"
+    <ImageView
+        android:id="@+id/iv_itemPostImage"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        app:cardCornerRadius="5dp">
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            app:postImage="@{post.postImage}" />
-
-    </com.zoho.mohammadrajabi.socialnetwork.util.CustomCardView>
-
-</layout>
+</com.zoho.mohammadrajabi.socialnetwork.util.CustomCardView>

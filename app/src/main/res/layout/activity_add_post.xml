@@ -1,127 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.activity.CommentActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator_addPostActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.comment.CommentActivity">
 
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/coordinator_addPostActivity"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?actionBarSize"
+        android:background="@color/white">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@color/white"
-            >
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/imageView_addPostActivity_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/standard_margin"
+                android:tint="@color/black"
+                app:srcCompat="@drawable/ic_arrow_back" />
 
-                <ImageView
-                    android:id="@+id/imageView_addPostActivity_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/standard_margin"
-                    app:srcCompat="@drawable/ic_arrow_back"
-                    android:tint="@color/black"
-                    />
+            <ImageView
+                android:id="@+id/btn_createPost_submit"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/standard_margin"
+                android:tint="@color/colorPrimary"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_check" />
 
-                <ImageView
-                    android:id="@+id/btn_createPost"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/standard_margin"
-                    android:visibility="gone"
-                    android:tint="@color/colorPrimary"
-                    app:srcCompat="@drawable/ic_check" />
+            <ProgressBar
+                android:id="@+id/btn_createPost_loading"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/standard_margin"
+                android:tint="@color/colorPrimary"
+                android:visibility="gone" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="@string/addPost"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/x_large_text_size"
-                    />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/addPost"
+                android:textColor="@color/black"
+                android:textSize="@dimen/x_large_text_size" />
 
-            </RelativeLayout>
+        </RelativeLayout>
 
-        </com.google.android.material.appbar.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <ScrollView
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/high_margin"
+                android:layout_marginRight="@dimen/high_margin"
+                android:text="@string/postTitle"
+                android:textColor="@color/gray600" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editText_addPostActivity_postTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:layout_marginLeft="@dimen/high_margin"
+                android:layout_marginTop="@dimen/standard_margin"
+                android:layout_marginRight="@dimen/high_margin"
+                android:layout_marginBottom="@dimen/standard_margin"
+                android:gravity="right|center_vertical"
+                android:inputType="text"
+                android:minHeight="46dp"
+                android:paddingRight="@dimen/standard_padding"
+                android:textDirection="locale" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="right"
-                    android:layout_marginRight="@dimen/high_margin"
-                    android:layout_marginTop="@dimen/high_margin"
-                    android:text="@string/postTitle"
-                    android:textColor="@color/gray600"
-                    />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/editText_addPostActivity_postTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/high_margin"
-                    android:layout_marginRight="@dimen/high_margin"
-                    android:layout_marginBottom="@dimen/standard_margin"
-                    android:layout_marginTop="@dimen/standard_margin"
-                    android:gravity="right|center_vertical"
-                    android:inputType="text"
-                    android:minHeight="46dp"
-                    android:paddingRight="@dimen/standard_padding"
-                    android:textDirection="locale" />
-
-                <FrameLayout
-                    android:id="@+id/layout_addPostActivity_imageUpload"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:background="@drawable/dotted"
-                    android:layout_margin="@dimen/high_margin"
-                    >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_upload"
-                        />
-
-                </FrameLayout>
+            <FrameLayout
+                android:id="@+id/layout_addPostActivity_imageUpload"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_margin="@dimen/high_margin"
+                android:background="@drawable/dotted">
 
                 <ImageView
-                    android:id="@+id/imageView_addPostActivity_postImage"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_margin="@dimen/high_margin"
-                    android:layout_gravity="center_horizontal"
-                    />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_upload" />
 
-            </LinearLayout>
+            </FrameLayout>
 
-        </ScrollView>
+            <ImageView
+                android:id="@+id/imageView_addPostActivity_postImage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="@dimen/high_margin" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </LinearLayout>
 
-</layout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 

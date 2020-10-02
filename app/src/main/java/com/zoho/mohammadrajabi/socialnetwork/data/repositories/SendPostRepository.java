@@ -1,11 +1,8 @@
 package com.zoho.mohammadrajabi.socialnetwork.data.repositories;
 
-import androidx.lifecycle.MutableLiveData;
 
-import com.zoho.mohammadrajabi.socialnetwork.data.Resources;
 import com.zoho.mohammadrajabi.socialnetwork.data.local.memoryCache.ProfileMemoryCache;
 import com.zoho.mohammadrajabi.socialnetwork.data.model.SendPostResponse;
-import com.zoho.mohammadrajabi.socialnetwork.data.model.SuccessResponse;
 import com.zoho.mohammadrajabi.socialnetwork.data.model.UserProfileResponse;
 import com.zoho.mohammadrajabi.socialnetwork.data.rest.ApiService;
 

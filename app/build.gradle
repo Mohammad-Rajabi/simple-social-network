@@ -18,7 +18,7 @@ android {
     }
 
     buildFeatures {
-        dataBinding = true
+        viewBinding true
     }
 
     compileOptions {
@@ -26,9 +26,38 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    productFlavors {
+        flavorDimensions "market", "app"
+
+        googlePlay {
+            dimension "market"
+        }
+
+        cafeBazar {
+            dimension "market"
+        }
+
+        app1 {
+            dimension "app"
+            applicationId = "com.zoho.mohammadrajabi.socialnetwork"
+            buildConfigField "String", "API_BASE_URL", BASE_URL
+            resValue "string", "app_name", "Social Network"
+            resValue "color", "colorPrimary", "#FA709A"
+            resValue "color", "colorPrimaryDark", "#FA709A"
+            resValue "color", "colorAccent", "#FEB949"
+
+            minSdkVersion 17
+            targetSdkVersion 29
+            versionCode 1
+            versionName "1"
+        }
+
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -45,10 +74,8 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.13'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.google.firebase:firebase-config:17.0.0'
 
     def version_retrofit2 = "2.8.2"
     implementation "com.squareup.retrofit2:retrofit:$version_retrofit2"

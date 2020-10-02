@@ -13,7 +13,7 @@ public class Resources<T> {
     }
 
     public static <T> Resources<T> onConnectivity() {
-        return new Resources(Status.NETWORKCONNECTIVITY, null ,null);
+        return new Resources(Status.NETWORK_CONNECTIVITY, null ,null);
     }
 
     public static <T> Resources<T> onLoading() {
@@ -26,5 +26,9 @@ public class Resources<T> {
 
     public static <T> Resources onSuccess(T data) {
         return new Resources(Status.SUCCESS, data ,null);
+    }
+
+    public enum Status {
+        NETWORK_CONNECTIVITY, LOADING, ERROR, SUCCESS;
     }
 }

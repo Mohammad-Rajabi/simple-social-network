@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.zoho.mohammadrajabi.socialnetwork",
+  "variantName": "cafeBazarApp1Release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "properties": [],
+      "versionCode": 1,
+      "versionName": "1",
+      "enabled": true,
+      "outputFile": "app-cafeBazar-app1-release.apk"
+    }
+  ]
+}

@@ -2,20 +2,11 @@ package com.zoho.mohammadrajabi.socialnetwork.data.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ImageView;
 
-import androidx.core.content.ContextCompat;
-import androidx.databinding.BindingAdapter;
-
-import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
-import com.zoho.mohammadrajabi.socialnetwork.R;
 
-import java.io.Serializable;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
-public class Post implements Serializable {
+public class Post implements Parcelable {
 
     @SerializedName("id")
     private String postId;
@@ -29,26 +20,31 @@ public class Post implements Serializable {
     private int commentCount;
     private String commentCountStr;
 
-    @BindingAdapter("profileImage")
-    public static void loadProfileImage(CircleImageView imageView, String imageUrl) {
-//        if (imageUrl != null || !imageUrl.isEmpty()) {
-//            Glide.with(imageView.getContext()).load(imageUrl).into(imageView);
-//        } else {
-//            Glide.with(imageView.getContext()).load(imageView.getContext().getResources().getDrawable(R.drawable.photo_male_3)).into(imageView);
-//        }
-        Glide.with(imageView.getContext()).load(imageView.getContext().getResources().getDrawable(R.drawable.photo_male_3)).into(imageView);
+    public Post(){}
+
+    protected Post(Parcel in) {
+        postId = in.readString();
+        postImage = in.readString();
+        postContent = in.readString();
+        postOwnerUsername = in.readString();
+        postOwnerProfileImage = in.readString();
+        isLiked = in.readByte() != 0;
+        likeCount = in.readInt();
+        commentCount = in.readInt();
+        commentCountStr = in.readString();
     }
 
-    @BindingAdapter("postImage")
-    public static void loadPostImage(ImageView imageView, String imageUrl) {
-//        if (imageUrl != null || !imageUrl.isEmpty()) {
-//            Glide.with(imageView.getContext()).load(imageUrl).into(imageView);
-//        } else {
-//            Glide.with(imageView.getContext()).load(ContextCompat.getDrawable(imageView.getContext(), R.drawable.spring_in_shiraz)).into(imageView);
-//        }
-        Glide.with(imageView.getContext()).load(ContextCompat.getDrawable(imageView.getContext(), R.drawable.spring_in_shiraz)).into(imageView);
+    public static final Creator<Post> CREATOR = new Creator<Post>() {
+        @Override
+        public Post createFromParcel(Parcel in) {
+            return new Post(in);
+        }
 
-    }
+        @Override
+        public Post[] newArray(int size) {
+            return new Post[size];
+        }
+    };
 
     public boolean isLiked() {
         return isLiked;
@@ -118,4 +114,21 @@ public class Post implements Serializable {
         return commentCount + " نظر";
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(postId);
+        dest.writeString(postImage);
+        dest.writeString(postContent);
+        dest.writeString(postOwnerUsername);
+        dest.writeString(postOwnerProfileImage);
+        dest.writeByte((byte) (isLiked ? 1 : 0));
+        dest.writeInt(likeCount);
+        dest.writeInt(commentCount);
+        dest.writeString(commentCountStr);
+    }
 }

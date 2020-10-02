@@ -1,32 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ui.activity.MainActivity">
 
-    <RelativeLayout
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView_mainActivity"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:layoutDirection="rtl"
+        app:itemIconTint="@drawable/nav_selected_color"
+        app:itemRippleColor="@color/orange"
+        app:itemTextColor="@drawable/nav_selected_color"
+        app:menu="@menu/menu_bottom_navigation" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigationView_mainActivity"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"
-            android:layoutDirection="rtl"
-            app:itemIconTint="@drawable/nav_selected_color"
-            app:itemRippleColor="@color/orange"
-            app:itemTextColor="@drawable/nav_selected_color"
-            app:menu="@menu/menu_bottom_navigation" />
-
-        <FrameLayout
-            android:id="@+id/frame_mainActivity_fragmentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@id/navigationView_mainActivity" />
+    <FrameLayout
+        android:id="@+id/frame_mainActivity_fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/navigationView_mainActivity" />
 
 
-    </RelativeLayout>
+</RelativeLayout>
 
-</layout>
