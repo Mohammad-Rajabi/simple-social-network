@@ -13,4 +13,4 @@ Technologies that are used in this projects are:
     Rxjava2
     RxAndroid
     LiveData
-    Data Binding
+    View Binding
