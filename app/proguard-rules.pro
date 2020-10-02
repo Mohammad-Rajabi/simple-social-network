@@ -20,7 +20,6 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-
 #Glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep class * extends com.bumptech.glide.module.AppGlideModule {
@@ -36,35 +35,63 @@
 
 
 
-# Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
+# Gson specific classes
+-keep class sun.misc.Unsafe { *; }
+#-keep class com.google.gson.stream.** { *; }
+
+# Application classes that will be serialized/deserialized over Gson
+# -keep class com.google.gson.examples.android.model.** { *; }
+
+# Prevent proguard from stripping interface information from TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+
+### Retrofit 2
+# Platform calls Class.forName on types which do not exist on Android to determine platform.
+-dontnote retrofit2.Platform
+# Platform used when running on RoboVM on iOS. Will not be used at runtime.
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+# Platform used when running on Java 8 VMs. Will not be used at runtime.
+-dontwarn retrofit2.Platform$Java8
+# Retain generic type information for use by reflection by converters and adapters.
+-keepattributes Signature
+# Retain declared checked exceptions for use by a Proxy instance.
+-keepattributes Exceptions
+
+-dontwarn retrofit2.adapter.rxjava.CompletableHelper$** # https://github.com/square/retrofit/issues/2034
+#To use Single instead of Observable in Retrofit interface
+-keepnames class rx.Single
+#Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
 # EnclosingMethod is required to use InnerClasses.
 -keepattributes Signature, InnerClasses, EnclosingMethod
-
-# Retrofit does reflection on method and parameter annotations.
--keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
-
 # Retain service method parameters when optimizing.
 -keepclassmembers,allowshrinking,allowobfuscation interface * {
     @retrofit2.http.* <methods>;
 }
-
+# Retrofit does reflection on method and parameter annotations.
+-keepattributes RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations
 # Ignore annotation used for build tooling.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
-
 # Ignore JSR 305 annotations for embedding nullability information.
 -dontwarn javax.annotation.**
-
 # Guarded by a NoClassDefFoundError try/catch and only used when on the classpath.
 -dontwarn kotlin.Unit
-
 # Top-level functions that can only be used by Kotlin.
 -dontwarn retrofit2.KotlinExtensions
 -dontwarn retrofit2.KotlinExtensions$*
-
 # With R8 full mode, it sees no subtypes of Retrofit interfaces since they are created with a Proxy
 # and replaces all potential values with null. Explicitly keeping the interfaces prevents this.
 -if interface * { @retrofit2.http.* <methods>; }
 -keep,allowobfuscation interface <1>
+
+### OkHttp3
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
 
 
@@ -73,15 +100,57 @@
 -dontwarn org.codehaus.mojo.animal_sniffer.*
 
 
-#okhttp
-# JSR 305 annotations are for embedding nullability information.
--dontwarn javax.annotation.**
 
-# A resource is loaded with a relative path so the package of this class must be preserved.
--keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+### RxJava, RxAndroid (https://gist.github.com/kosiara/487868792fbd3214f9c9)
+-keep class rx.schedulers.Schedulers {
+    public static <methods>;
+}
+-keep class rx.schedulers.ImmediateScheduler {
+    public <methods>;
+}
+-keep class rx.schedulers.TestScheduler {
+    public <methods>;
+}
+-keep class rx.schedulers.Schedulers {
+    public static ** test();
+}
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    long producerNode;
+    long consumerNode;
+}
+-dontwarn sun.misc.Unsafe
 
-# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
--dontwarn org.codehaus.mojo.animal_sniffer.*
+-dontwarn org.reactivestreams.FlowAdapters
+-dontwarn org.reactivestreams.**
+-dontwarn java.util.concurrent.flow.**
+-dontwarn java.util.concurrent.**
 
-# OkHttp platform used only on JVM and when Conscrypt dependency is available.
--dontwarn okhttp3.internal.platform.ConscryptPlatform
+
+
+### Android Architecture Components
+# Ref: https://issuetracker.google.com/issues/62113696
+# LifecycleObserver's empty constructor is considered to be unused by proguard
+#-keepclassmembers class * implements android.arch.lifecycle.LifecycleObserver {
+#    <init>(...);
+#}
+-keep class * implements android.arch.lifecycle.LifecycleObserver {
+    <init>(...);
+}
+
+# ViewModel's empty constructor is considered to be unused by proguard
+-keepclassmembers class * extends android.arch.lifecycle.ViewModel {
+    <init>(...);
+}
+
+# keep Lifecycle State and Event enums values
+-keepclassmembers class android.arch.lifecycle.Lifecycle$State { *; }
+-keepclassmembers class android.arch.lifecycle.Lifecycle$Event { *; }
+# keep methods annotated with @OnLifecycleEvent even if they seem to be unused
+# (Mostly for LiveData.LifecycleBoundObserver.onStateChange(), but who knows)
+-keepclassmembers class * {
+    @android.arch.lifecycle.OnLifecycleEvent *;
+}

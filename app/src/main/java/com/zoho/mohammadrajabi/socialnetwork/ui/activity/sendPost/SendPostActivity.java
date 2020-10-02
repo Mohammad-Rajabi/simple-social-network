@@ -81,14 +81,17 @@ public class SendPostActivity extends AppCompatActivity {
                         switch (sendPostResponseResources.status) {
                             case NETWORK_CONNECTIVITY:
                                 binding.btnCreatePostLoading.setVisibility(View.GONE);
+                                binding.btnCreatePostSubmit.setVisibility(View.VISIBLE);
                                 Snackbar.make(binding.coordinatorAddPostActivity, getResources().getString(R.string.connectivityToInternet), Snackbar.LENGTH_SHORT).show();
                                 break;
 
                             case LOADING:
                                 binding.btnCreatePostLoading.setVisibility(View.VISIBLE);
+                                binding.btnCreatePostSubmit.setVisibility(View.GONE);
                                 break;
                             case SUCCESS:
                                 binding.btnCreatePostLoading.setVisibility(View.GONE);
+                                binding.btnCreatePostSubmit.setVisibility(View.GONE);
                                 if (sendPostResponseResources.data.isStatus()) {
                                     binding.editTextAddPostActivityPostTitle.setText("");
                                     binding.imageViewAddPostActivityPostImage.setImageResource(android.R.color.transparent);
