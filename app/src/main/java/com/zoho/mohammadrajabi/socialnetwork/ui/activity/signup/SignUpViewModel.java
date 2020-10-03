@@ -35,7 +35,7 @@ public class SignUpViewModel extends ViewModel {
         checkUsernameResult = new MutableLiveData<>();
 
         apiService.checkUsername(username)
-                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new SingleObserver<checkUsernameResponse>() {
                     @Override
@@ -45,14 +45,14 @@ public class SignUpViewModel extends ViewModel {
 
                     @Override
                     public void onSuccess(checkUsernameResponse checkUsernameResponse) {
-                        checkUsernameResult.postValue(Resources.onSuccess(checkUsernameResponse));
+                        checkUsernameResult.setValue(Resources.onSuccess(checkUsernameResponse));
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         if (e instanceof ConnectivityException || e instanceof java.net.ConnectException)
-                            checkUsernameResult.postValue(Resources.onConnectivity());
-                        else checkUsernameResult.postValue(Resources.onError(""));
+                            checkUsernameResult.setValue(Resources.onConnectivity());
+                        else checkUsernameResult.setValue(Resources.onError(""));
                     }
                 });
         return checkUsernameResult;

@@ -20,20 +20,26 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
-#Glide
+
+### Glide, Glide Okttp Module, Glide Transformations
 -keep public class * implements com.bumptech.glide.module.GlideModule
--keep class * extends com.bumptech.glide.module.AppGlideModule {
- <init>(...);
-}
--keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
 }
--keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
-  *** rewind();
-}
+# -keepresourcexmlelements manifest/application/meta-data@value=GlideModule 3 For dexguard
+
+-dontwarn jp.co.cyberagent.android.gpuimage.**
 
 
+
+### Gson uses generic type information stored in a class file when working with fields. Proguard
+# removes such information by default, so configure it to keep all of it.
+-keepattributes Signature
+
+# For using GSON @Expose annotation
+-keepattributes *Annotation*
 
 # Gson specific classes
 -keep class sun.misc.Unsafe { *; }
@@ -93,6 +99,13 @@
 # A resource is loaded with a relative path so the package of this class must be preserved.
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
+### OkHttp3
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
 
 
 #okio
@@ -132,7 +145,6 @@
 
 
 ### Android Architecture Components
-# Ref: https://issuetracker.google.com/issues/62113696
 # LifecycleObserver's empty constructor is considered to be unused by proguard
 #-keepclassmembers class * implements android.arch.lifecycle.LifecycleObserver {
 #    <init>(...);
@@ -153,4 +165,14 @@
 # (Mostly for LiveData.LifecycleBoundObserver.onStateChange(), but who knows)
 -keepclassmembers class * {
     @android.arch.lifecycle.OnLifecycleEvent *;
+}
+
+
+#keep all public and protected methods that could be used by java reflection
+-keepclassmembernames class * {
+	public protected <methods>;
+}
+
+-keepclasseswithmembernames class * {
+	native <methods>;
 }

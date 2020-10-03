@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
@@ -86,38 +87,45 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                signUpViewModel.checkUsername(s.toString()).observe(SignUpActivity.this, resources -> {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
 
-                    switch (resources.status) {
+                        signUpViewModel.checkUsername(s.toString()).observe(SignUpActivity.this, resources -> {
 
-                        case NETWORK_CONNECTIVITY:
+                            switch (resources.status) {
 
-                            Snackbar.make(binding.coordinatorSignUpActivity, getResources().getString(R.string.connectivityToInternet), Snackbar.LENGTH_SHORT).show();
-                            break;
+                                case NETWORK_CONNECTIVITY:
 
-                        case SUCCESS:
+                                    Snackbar.make(binding.coordinatorSignUpActivity, getResources().getString(R.string.connectivityToInternet), Snackbar.LENGTH_SHORT).show();
+                                    break;
 
-                            binding.textViewSignUpActivityCheckIdentity.setVisibility(View.VISIBLE);
+                                case SUCCESS:
 
-                            if (!resources.data.getStatus()) {
-                                binding.textViewSignUpActivityCheckIdentity.setText("این شناسه قابل انتخاب هست");
-                                binding.textViewSignUpActivityCheckIdentity.setTextColor(getResources().getColor(R.color.green));
-                                verifiedIdentityName = true;
+                                    binding.textViewSignUpActivityCheckIdentity.setVisibility(View.VISIBLE);
 
-                            } else if (resources.data.getStatus()) {
-                                binding.textViewSignUpActivityCheckIdentity.setText("این شناسه قابل انتخاب نیست!");
-                                binding.textViewSignUpActivityCheckIdentity.setTextColor(getResources().getColor(R.color.red));
-                                verifiedIdentityName = false;
+                                    if (!resources.data.getStatus()) {
+                                        binding.textViewSignUpActivityCheckIdentity.setText("این شناسه قابل انتخاب هست");
+                                        binding.textViewSignUpActivityCheckIdentity.setTextColor(getResources().getColor(R.color.green));
+                                        verifiedIdentityName = true;
+
+                                    } else if (resources.data.getStatus()) {
+                                        binding.textViewSignUpActivityCheckIdentity.setText("این شناسه قابل انتخاب نیست!");
+                                        binding.textViewSignUpActivityCheckIdentity.setTextColor(getResources().getColor(R.color.red));
+                                        verifiedIdentityName = false;
+                                    }
+                                    break;
+
+                                case ERROR:
+
+                                    Snackbar.make(binding.coordinatorSignUpActivity, getResources().getString(R.string.unknownError), Snackbar.LENGTH_SHORT).show();
+                                    break;
+
                             }
-                            break;
-
-                        case ERROR:
-
-                            Snackbar.make(binding.coordinatorSignUpActivity, getResources().getString(R.string.unknownError), Snackbar.LENGTH_SHORT).show();
-                            break;
+                        });
 
                     }
-                });
+                }, 500);
             }
         });
 
