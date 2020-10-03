@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.zoho.mohammadrajabi.socialnetwork.data.ConnectivityException;
 import com.zoho.mohammadrajabi.socialnetwork.data.Resources;
 import com.zoho.mohammadrajabi.socialnetwork.data.model.LikeResponse;
 import com.zoho.mohammadrajabi.socialnetwork.data.model.Post;
@@ -33,13 +34,13 @@ public class HomeViewModel extends ViewModel {
     @Inject
     public HomeViewModel(HomeRepository homeRepository) {
         this.homeRepository = homeRepository;
-        postResult = new MutableLiveData<>();
         compositeDisposable = new CompositeDisposable();
-
-        getPosts();
     }
 
-    private void getPosts() {
+    public LiveData<Resources<PostResponse>> getPosts() {
+
+        if (postResult == null)
+            postResult = new MutableLiveData<>();
 
         postResult.setValue(Resources.onLoading());
         homeRepository.getPosts()
@@ -58,13 +59,10 @@ public class HomeViewModel extends ViewModel {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        if (e instanceof ConnectivityException)
+                            postResult.setValue(Resources.onConnectivity());
                     }
                 });
-
-    }
-
-    public LiveData<Resources<PostResponse>> observePosts() {
         return postResult;
     }
 

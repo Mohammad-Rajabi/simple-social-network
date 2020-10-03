@@ -65,7 +65,7 @@ public class HomeFragment extends DaggerFragment implements PostAdapter.onPostCl
 
     private void observe() {
 
-        homeViewModel.observePosts()
+        homeViewModel.getPosts()
                 .observe(getViewLifecycleOwner(), postResponseResources -> {
 
                     switch (postResponseResources.status) {

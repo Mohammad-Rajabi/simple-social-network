@@ -33,7 +33,8 @@ public class LoginViewModel extends ViewModel {
 
     public LiveData<Resources<SignInResponse>> login(String username, String password) {
 
-        result = new MutableLiveData<Resources<SignInResponse>>();
+        if (result == null)
+            result = new MutableLiveData<Resources<SignInResponse>>();
 
         result.setValue(Resources.onLoading());
 
@@ -69,6 +70,6 @@ public class LoginViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
         if (disposable != null && !disposable.isDisposed())
-        disposable.isDisposed();
+            disposable.isDisposed();
     }
 }

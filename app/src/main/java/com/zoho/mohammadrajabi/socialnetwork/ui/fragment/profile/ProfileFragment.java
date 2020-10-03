@@ -65,8 +65,8 @@ public class ProfileFragment extends DaggerFragment implements PostImageAdapter.
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
-
+        if (binding == null)
+            binding = FragmentProfileBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

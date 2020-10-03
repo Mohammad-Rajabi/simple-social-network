@@ -11,6 +11,7 @@ import com.zoho.mohammadrajabi.socialnetwork.R;
 import com.zoho.mohammadrajabi.socialnetwork.data.model.User;
 import com.zoho.mohammadrajabi.socialnetwork.databinding.ItemSearchBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
@@ -22,9 +23,13 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     }
 
     public void setUsers(List<User> users) {
-        this.users.clear();
+        clearUsers();
         this.users = users;
         notifyDataSetChanged();
+    }
+
+    public void clearUsers() {
+        users.clear();
     }
 
 

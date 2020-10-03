@@ -31,10 +31,12 @@ public class ProfileViewModel extends ViewModel {
     @Inject
     public ProfileViewModel(ApiService apiService) {
         this.apiService = apiService;
-        result = new MutableLiveData<>();
     }
 
     public LiveData<Resources<UserProfileResponse>> getProfile(String userId) {
+
+        if (result == null)
+            result = new MutableLiveData<>();
 
         apiService.getProfile(userId)
                 .subscribeOn(Schedulers.io())
@@ -66,7 +68,7 @@ public class ProfileViewModel extends ViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        if (disposable != null && !disposable.isDisposed() )
+        if (disposable != null && !disposable.isDisposed())
             disposable.dispose();
     }
 }

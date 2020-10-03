@@ -32,9 +32,9 @@ public class SqLiteHelper extends SQLiteAssetHelper {
         sqLiteAssetHelper = this;
     }
 
-    public Observable<List<User>> getUsers(String keyword) {
+    public Single<List<User>> getUsers(String keyword) {
 
-        return Observable.create(emitter -> {
+        return Single.create(emitter -> {
 
             try {
 
@@ -62,8 +62,7 @@ public class SqLiteHelper extends SQLiteAssetHelper {
                     db.close();
 
                     if (!emitter.isDisposed()) {
-                        emitter.onNext(users);
-                        emitter.onComplete();
+                        emitter.onSuccess(users);
                     }
 
                 }

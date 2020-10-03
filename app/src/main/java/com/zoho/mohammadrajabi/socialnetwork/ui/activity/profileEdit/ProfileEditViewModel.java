@@ -32,14 +32,13 @@ public class ProfileEditViewModel extends ViewModel {
     @Inject
     public ProfileEditViewModel(ApiService apiService) {
         this.apiService = apiService;
-        checkUsernameResult = new MutableLiveData<>();
-        updateResult = new MutableLiveData<>();
         compositeDisposable = new CompositeDisposable();
     }
 
     public LiveData<Resources<checkUsernameResponse>> checkUsername(String username) {
 
-        checkUsernameResult = new MutableLiveData<>();
+        if (checkUsernameResult == null)
+            checkUsernameResult = new MutableLiveData<>();
 
         apiService.checkUsername(username)
                 .observeOn(Schedulers.io())
@@ -66,6 +65,9 @@ public class ProfileEditViewModel extends ViewModel {
     }
 
     public LiveData<Resources<UpdateUserResponse>> editProfile(int userId, String username, String password, String phone, MultipartBody.Part multipartBody) {
+
+        if (updateResult == null)
+            updateResult = new MutableLiveData<>();
 
         updateResult.setValue(Resources.onLoading());
 

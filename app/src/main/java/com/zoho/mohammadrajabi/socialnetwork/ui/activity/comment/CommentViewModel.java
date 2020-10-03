@@ -31,11 +31,13 @@ public class CommentViewModel extends ViewModel {
     @Inject
     public CommentViewModel(ApiService apiService) {
         this.apiService = apiService;
-        result = new MutableLiveData<>();
         compositeDisposable = new CompositeDisposable();
     }
 
     public LiveData<Resources<CommentsResponse>> getComments(int postId) {
+
+        if (result == null)
+            result = new MutableLiveData<>();
 
         result.setValue(Resources.onLoading());
 
@@ -69,7 +71,8 @@ public class CommentViewModel extends ViewModel {
 
     public LiveData<Resources<SendCommentResponse>> sendComment(String comment, int postId, String userId) {
 
-        sendCommentResult = new MutableLiveData<>();
+        if (sendCommentResult == null)
+            sendCommentResult = new MutableLiveData<>();
 
         apiService.sendComment(comment, postId, userId)
                 .subscribeOn(Schedulers.io())

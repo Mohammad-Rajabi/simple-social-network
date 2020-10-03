@@ -59,7 +59,8 @@ public class SearchFragment extends DaggerFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentSearchBinding.inflate(inflater, container, false);
+        if (binding == null)
+            binding = FragmentSearchBinding.inflate(inflater, container, false);
         ((AppCompatActivity) getActivity()).setSupportActionBar(binding.layoutSearchFragmentToolbar);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         return binding.getRoot();
@@ -70,7 +71,16 @@ public class SearchFragment extends DaggerFragment {
         super.onStart();
 
 
-        binding.btnClear.setOnClickListener(v -> binding.etSearch.setText(""));
+        binding.btnClear.setOnClickListener(v -> {
+            binding.etSearch.setText("");
+            if (searchAdapter != null) {
+                searchAdapter.clearUsers();
+                searchAdapter.notifyDataSetChanged();
+            }
+            if (binding.layoutSearchFragmentEmptyState.getVisibility() == View.VISIBLE) {
+                binding.layoutSearchFragmentEmptyState.setVisibility(View.GONE);
+            }
+        });
 
         binding.etSearch.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {

@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.gson.internal.$Gson$Preconditions;
 import com.zoho.mohammadrajabi.socialnetwork.data.Resources;
 import com.zoho.mohammadrajabi.socialnetwork.data.local.SqLiteHelper;
 import com.zoho.mohammadrajabi.socialnetwork.data.model.User;
@@ -13,13 +12,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.BehaviorSubject;
-import kotlin._Assertions;
 
 public class SearchViewModel extends ViewModel {
 
@@ -34,19 +30,32 @@ public class SearchViewModel extends ViewModel {
 
     public LiveData<Resources<List<User>>> search(String keyword) {
 
+
         result = new MutableLiveData<>();
 
         result.setValue(Resources.onLoading());
 
-        disposable = sqLiteHelper.getUsers(keyword)
+        sqLiteHelper.getUsers(keyword)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext(users -> result.setValue(Resources.onSuccess(users)))
-                .doOnError(throwable -> result.setValue(Resources.onError("")))
-                .subscribe();
+                .subscribe(new SingleObserver<List<User>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onSuccess(List<User> users) {
+                        result.setValue(Resources.onSuccess(users));
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        result.setValue(Resources.onError(""));
+                    }
+                });
 
         return result;
-
     }
 
     @Override

@@ -32,10 +32,12 @@ public class SendPostViewModel extends ViewModel {
     @Inject
     public SendPostViewModel(SendPostRepository sendPostRepository) {
         this.sendPostRepository = sendPostRepository;
-        result = new MutableLiveData<>();
     }
 
     public LiveData<Resources<SendPostResponse>> sendPost(int userId, MultipartBody.Part postImage, String postContent) {
+
+        if (result == null)
+            result = new MutableLiveData<>();
 
         result.setValue(Resources.onLoading());
 

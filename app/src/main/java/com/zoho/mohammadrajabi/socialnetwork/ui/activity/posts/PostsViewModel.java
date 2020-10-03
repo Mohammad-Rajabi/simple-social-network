@@ -26,10 +26,12 @@ public class PostsViewModel extends ViewModel {
     @Inject
     public PostsViewModel(ApiService apiService) {
         this.apiService = apiService;
-        likeResultLiveData = new MutableLiveData<>();
     }
 
     public LiveData<Resources<LikeResponse>> likePost(int postId) {
+
+        if (likeResultLiveData == null)
+            likeResultLiveData = new MutableLiveData<>();
 
         apiService.likePost(postId)
                 .subscribeOn(Schedulers.io())

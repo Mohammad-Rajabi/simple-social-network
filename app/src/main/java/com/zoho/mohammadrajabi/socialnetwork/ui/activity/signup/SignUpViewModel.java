@@ -32,7 +32,8 @@ public class SignUpViewModel extends ViewModel {
 
     public LiveData<Resources<checkUsernameResponse>> checkUsername(String username) {
 
-        checkUsernameResult = new MutableLiveData<>();
+        if (checkUsernameResult == null)
+            checkUsernameResult = new MutableLiveData<>();
 
         apiService.checkUsername(username)
                 .subscribeOn(Schedulers.io())
