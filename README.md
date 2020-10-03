@@ -14,3 +14,8 @@ Technologies that are used in this projects are:
     LiveData
     ViewModel
     View Binding
+
+
+Download =============================================
+
+* You can download the latet APK version from [here](https://mega.nz/file/Uc1xnaxY#h6Bm5DGZoIlIOO_qy7CODG7sRAIb6u_hkZy257ljj1M)
