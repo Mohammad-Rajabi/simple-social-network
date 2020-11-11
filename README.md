@@ -18,4 +18,4 @@ Technologies that are used in this projects are:
 
 # Download
 
-You can download the latest APK version from [here](https://mega.nz/file/Uc1xnaxY#h6Bm5DGZoIlIOO_qy7CODG7sRAIb6u_hkZy257ljj1M)
+You can download the latest APK version from [here]
