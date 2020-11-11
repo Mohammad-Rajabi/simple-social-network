@@ -18,4 +18,4 @@ Technologies that are used in this projects are:
 
 # Download
 
-You can download the latest APK version from [here]
+You can download the latest APK version from [here]()
